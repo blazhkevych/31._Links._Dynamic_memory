@@ -32,6 +32,24 @@ int main()
 			нулевых элементов массива, используя механизм ссылок.
 			*/
 
+			const int size{ 10 };
+			const int& refSize = size;
+			int arr[size]{ 0 };
+
+			Init(arr, size, -10, 10);
+			Print(arr, size);
+
+			int neg{ 0 };
+			int pos{ 0 };
+			int zero{ 0 };
+			int& refNeg = neg;
+			int& refPos = pos;
+			int& refZero = zero;
+
+			NegPosZeroArrEl(arr, refSize, refNeg, refPos, refZero);
+			cout << "\nneg = " << neg << endl
+				<< "zero = " << zero << endl
+				<< "pos = " << pos << endl;
 		}
 		break;
 
@@ -43,7 +61,16 @@ int main()
 			отрицательные числа и вернуть указатель на новый динамический
 			массив, используя механизм ссылок.
 			*/
+			int size{ 10 };
+			int* ptr{ nullptr };
+			Allocate(ptr, size);
+			Init(ptr, size, -10, 10);
+			Print(ptr, size);
+			DelNeg(ptr, size);
+			cout << endl;
+			Print(ptr, size);
 
+			delete[]ptr;
 		}
 		break;
 
@@ -54,7 +81,17 @@ int main()
 			динамического массива. Функция должна возвращать указатель на
 			динамический массив, используя механизм ссылок.
 			*/
+			const int arr_Size{ 10 }; // Размер массива.
+			int arrA[arr_Size]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }; // Создаем массив.
 
+			int sizeB{ 5 };
+			int* ptrB{ nullptr };
+			Allocate(ptrB, sizeB);
+			ptrB = AddArrToTheEndOfADynamicArr(ptrB, &sizeB, arrA, arr_Size);
+			cout << endl;
+			Print(ptrB, sizeB);
+
+			delete[] ptrB;		
 		}
 		break;
 
@@ -102,7 +139,24 @@ int main()
 			нулевые элементы в отдельные динамические массивы и возвращает
 			указатели на эти массивы, используя механизм ссылок.
 			*/
+			//2.11.30
+			srand(time(0));
+			int* posArr{ nullptr }, * negArr{ nullptr }, * zeroArr{ nullptr };
+			int posSize{ 0 }, negSize{ 0 }, zeroSize{ 0 };
+			int array[15]{ 0 };
+			Init(array, 15, -10, 10);
+			Print(array, 15);
+			Distribute(array, 15, posArr, posSize, negArr, negSize, zeroArr, zeroSize);
+			Print(posArr, posSize);
+			cout << endl;
+			Print(negArr, negSize);
+			cout << endl;
+			Print(zeroArr, zeroSize);
+			cout << endl;
 
+			delete[]posArr;
+			delete[]negArr;
+			delete[]zeroArr;
 		}
 		break;
 		}
