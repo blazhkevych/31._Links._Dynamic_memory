@@ -111,7 +111,7 @@ void NegPosZeroArrEl(int* const& ref, int const size, int& refNeg, int& ptrPos, 
 }
 
 // Функция удаляет из массива все отрицательные числа и возвращает указатель на новый динамический массив.
-void DelNeg(int*& ref, int &size)
+void DelNeg(int*& ref, int& size)
 {
 	int newSize{ 0 };
 	for (int i = 0; i < size; i++)
@@ -119,7 +119,7 @@ void DelNeg(int*& ref, int &size)
 		if (ref[i] >= 0)
 			newSize++;
 	}
-	
+
 	int* p = new int[newSize] {0};
 	int k{ 0 };
 	for (int i = 0; i < size; i++)
@@ -135,18 +135,54 @@ void DelNeg(int*& ref, int &size)
 }
 
 // функция, добавляет массив в конец динамического массива. Возвращает указатель на динамический массив.
-int* AddArrToTheEndOfADynamicArr(int* ptrB, int* sizeB, int arrA[], int arr_Size)
+void AddArrToTheEndOfADynamicArr(int*& ptrB, int& sizeB, int*& arrA, int arrA_Size)
 {
-	int newSize = arr_Size + *(sizeB);
-	ptrB = Allocate(newSize);
-	Init(ptrB, (newSize - arr_Size), -1, -1);
-	int j{ 0 };
-	for (int i = newSize - arr_Size; i < newSize; i++)
+	int newSize = arrA_Size + sizeB;
+	int* p = new int[newSize];
+	int w{ 0 };
+	for (int i = 0; i < sizeB; i++)
 	{
-		ptrB[i] = arrA[j];
-		j++;
+		p[i] = ptrB[w];
+		w++;
 	}
-	*(sizeB) = newSize;
 
-	return ptrB;
+	int q{ 0 };
+	for (int j = newSize - arrA_Size; j < newSize; j++)
+	{
+		p[j] = arrA[q];
+		q++;
+	}
+	sizeB = newSize;
+	delete[]ptrB;
+	ptrB = p;
+	p = nullptr;
 }
+
+// Функция, которая позволяет вставлять блок элементов
+// (одномерный массив) в указанную позицию динамического массива.
+// Функция возвращает указатель на динамический массив.
+//void InsertArrInArrByIndex(int* ptrA, int* sizeA, int* ptrB, int* sizeB, int index)
+//{
+//	int sizeP = *sizeA + *sizeB;
+//	if (index < 0 || index > sizeP - *sizeA)
+//		return ptrB;
+//	int* p = new int[sizeP];
+//	int k = index + *sizeA;
+//	int j{ 0 }, q{ 0 };
+//	for (int i = 0; i < sizeP; i++)
+//	{
+//		if (i < index || i >= k)
+//		{
+//			p[i] = ptrB[j];
+//			j++;
+//		}
+//		else if (i >= index && i < k)
+//		{
+//			p[i] = ptrA[q];
+//			q++;
+//		}
+//	}
+//	*sizeB = sizeP;
+//	delete[]ptrA;
+//	return p;
+//}

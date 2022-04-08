@@ -26,3 +26,8 @@ void DelNeg(int*& ptr, int& size);
 
 // функция, добавляет массив в конец динамического массива. Возвращает указатель на динамический массив.
 void AddArrToTheEndOfADynamicArr(int*& ptrB, int& sizeB, int*& arrA, int arr_Size);
+
+// Функция, которая позволяет вставлять блок элементов
+// (одномерный массив) в указанную позицию динамического массива.
+// Функция возвращает указатель на динамический массив.
+void InsertArrInArrByIndex(int* ptrA, int* sizeA, int* ptrB, int* sizeB, int index);

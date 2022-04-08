@@ -81,17 +81,22 @@ int main()
 			динамического массива. Функция должна возвращать указатель на
 			динамический массив, используя механизм ссылок.
 			*/
-			const int arr_Size{ 10 }; // Размер массива.
-			int arrA[arr_Size]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }; // Создаем массив.
+			const int arrA_Size{ 10 };
+			int arrA[arrA_Size]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+			int* ptrA = arrA;
 
 			int sizeB{ 5 };
 			int* ptrB{ nullptr };
+
 			Allocate(ptrB, sizeB);
-			ptrB = AddArrToTheEndOfADynamicArr(ptrB, &sizeB, arrA, arr_Size);
+			Init(ptrB, sizeB, 99, 99);
+			Print(ptrB, sizeB);
+
+			AddArrToTheEndOfADynamicArr(ptrB, sizeB, ptrA, arrA_Size);
 			cout << endl;
 			Print(ptrB, sizeB);
 
-			delete[] ptrB;		
+			delete[] ptrB;
 		}
 		break;
 
@@ -103,7 +108,53 @@ int main()
 			Функция должна возвращать указатель на динамический массив,
 			используя механизм ссылок.
 			*/
+			const int sizeA{ 5 };
+			int arrA[sizeA]{ 0, 1, 2, 3, 4 };
+			int* ptrA = arrA;
 
+			int sizeB{ 5 };
+			int* ptrB{ nullptr };
+
+			Allocate(ptrB, sizeB);
+			Init(ptrB, sizeB, 99, 99);
+
+			cout << "ptrA :"
+				<< endl;
+			Print(ptrA, sizeA);
+
+			cout << "\nptrB :"
+				<< endl;
+			Print(ptrB, sizeB);
+
+			cout << "\nEnter an index to insert: ";
+			int index{ 0 };
+			cin >> index;
+
+
+			delete[] ptrA;
+			delete[] ptrB;
+			///
+			int* ptrSizeA = &sizeA;
+			int* ptrSizeB = &sizeB;
+			int* ptrA = Allocate(sizeA);
+			int* ptrB = Allocate(sizeB);
+			Init(ptrA, sizeA, 1, 99);
+			Init(ptrB, sizeB, 1, 99);
+			cout << "ptrA :"
+				<< endl;
+			Print(ptrA, sizeA);
+			cout << "\nptrB :"
+				<< endl;
+			Print(ptrB, sizeB);
+			cout << "\nEnter an index to insert: ";
+			int index{ 0 };
+			cin >> index;
+			ptrB = InsertArrInArrByIndex(ptrA, &sizeA, ptrB, &sizeB, index);
+			cout << "\nptrA in ptrB:"
+				<< endl;
+			Print(ptrB, sizeB);
+
+			delete[] ptrB;
 		}
 		break;
 
