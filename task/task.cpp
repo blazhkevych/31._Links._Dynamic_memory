@@ -92,7 +92,7 @@ int main()
 			Init(ptrB, sizeB, 99, 99);
 			Print(ptrB, sizeB);
 
-			AddArrToTheEndOfADynamicArr(ptrB, sizeB, ptrA, arrA_Size);
+			ptrB = AddArrToTheEndOfADynamicArr(ptrB, sizeB, ptrA, arrA_Size);
 			cout << endl;
 			Print(ptrB, sizeB);
 
@@ -108,7 +108,33 @@ int main()
 			Функция должна возвращать указатель на динамический массив,
 			используя механизм ссылок.
 			*/
-			const int sizeA{ 5 };
+			int sizeA{ 5 };
+			int sizeB{ 5 };
+			int* ptrSizeA = &sizeA;
+			int* ptrSizeB = &sizeB;
+			int* ptrA{ nullptr };
+			Allocate(ptrA, sizeA);
+			int* ptrB{ nullptr };
+			Allocate(ptrB, sizeB);
+			Init(ptrA, sizeA, 99, 99);
+			Init(ptrB, sizeB, 1, 98);
+			cout << "ptrA :"
+				<< endl;
+			Print(ptrA, sizeA);
+			cout << "\nptrB :"
+				<< endl;
+			Print(ptrB, sizeB);
+			cout << "\nEnter an index to insert: ";
+			int index{ 0 };
+			cin >> index;
+			ptrB = InsertArrInArrByIndex(ptrA, sizeA, ptrB, sizeB, index);
+			cout << "\nptrA in ptrB:"
+				<< endl;
+			Print(ptrB, sizeB);
+
+			delete[] ptrB;
+
+			/*const int sizeA{ 5 };
 			int arrA[sizeA]{ 0, 1, 2, 3, 4 };
 			int* ptrA = arrA;
 
@@ -130,31 +156,15 @@ int main()
 			int index{ 0 };
 			cin >> index;
 
+			int* p{ nullptr };
 
-			delete[] ptrA;
-			delete[] ptrB;
-			///
-			int* ptrSizeA = &sizeA;
-			int* ptrSizeB = &sizeB;
-			int* ptrA = Allocate(sizeA);
-			int* ptrB = Allocate(sizeB);
-			Init(ptrA, sizeA, 1, 99);
-			Init(ptrB, sizeB, 1, 99);
-			cout << "ptrA :"
-				<< endl;
-			Print(ptrA, sizeA);
-			cout << "\nptrB :"
-				<< endl;
-			Print(ptrB, sizeB);
-			cout << "\nEnter an index to insert: ";
-			int index{ 0 };
-			cin >> index;
-			ptrB = InsertArrInArrByIndex(ptrA, &sizeA, ptrB, &sizeB, index);
+			p = InsertArrInArrByIndex(ptrA, sizeA, ptrB, sizeB, index);
 			cout << "\nptrA in ptrB:"
 				<< endl;
-			Print(ptrB, sizeB);
+			Print(p, sizeB);
 
-			delete[] ptrB;
+			delete[] ptrA;
+			delete[] ptrB;*/
 		}
 		break;
 
@@ -166,7 +176,22 @@ int main()
 			Функция должна возвращать указатель на динамический массив,
 			используя механизм ссылок.
 			*/
+			int sizeA{ 5 }, index{ 0 }, amount{ 0 };
+			int* ptrA{ nullptr };
+			Allocate(ptrA, sizeA);
+			Init(ptrA, sizeA, 1, 99);
+			cout << "ptrA :"
+				<< endl;
+			Print(ptrA, sizeA);
+			cout << "\nEnter index, than amount: \n";
+			cin >> index;
+			cin >> amount;
+			ptrA = RemoveByIndexInArr(ptrA, sizeA, index, amount);
+			cout << "\nptrA after removal:"
+				<< endl;
+			Print(ptrA, sizeA);
 
+			delete[] ptrA;
 		}
 		break;
 
@@ -178,7 +203,16 @@ int main()
 			простые числа и вернуть указатель на новый динамический массив,
 			используя механизм ссылок.
 			*/
+			int size{ 5 };
+			int* ptrA{ nullptr };
+			Allocate(ptrA, size);
+			Init(ptrA, size, 2, 19);
+			Print(ptrA, size);
+			ptrA = DelPrimeNumInArr(ptrA, size);
+			cout << endl;
+			Print(ptrA, size);
 
+			delete[]ptrA;
 		}
 		break;
 

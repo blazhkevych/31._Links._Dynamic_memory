@@ -25,9 +25,20 @@ void NegPosZeroArrEl(int* const& ptr, int const size, int& ptrNeg, int& ptrPos, 
 void DelNeg(int*& ptr, int& size);
 
 // функция, добавляет массив в конец динамического массива. Возвращает указатель на динамический массив.
-void AddArrToTheEndOfADynamicArr(int*& ptrB, int& sizeB, int*& arrA, int arr_Size);
+int* AddArrToTheEndOfADynamicArr(int*& ptrB, int& sizeB, int*& arrA, int arr_Size);
 
 // Функция, которая позволяет вставлять блок элементов
 // (одномерный массив) в указанную позицию динамического массива.
 // Функция возвращает указатель на динамический массив.
-void InsertArrInArrByIndex(int* ptrA, int* sizeA, int* ptrB, int* sizeB, int index);
+int*& InsertArrInArrByIndex(int*& ptrA, int sizeA, int*& ptrB, int& sizeB, int index);
+
+// Функция, которая позволяет удалять с произвольного
+// индекса указанное количество элементов из динамического
+// массива.Функция должна возвращать указатель на динамический
+// массив.
+int*& RemoveByIndexInArr(int*& ptrA, int& sizeA, int index, int amount);
+
+// Функция, получает указатель на динамический
+// массив и его размер. Удаляет из массива все
+// простые числа и возвращает указатель на новый динамический массив.
+int*& DelPrimeNumInArr(int*& ptrA, int& size);
